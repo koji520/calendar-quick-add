@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
 
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
+  "name": "Right-Click to Google Calendar™",
+  "description": "選択したテキストをGoogleカレンダーの予定に追加します。",
   "version": "1.0",
 
   "options_ui": {
@@ -10,7 +10,11 @@
   },
 
   "action": {
-    "default_icon": "icon.png",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    },
     "default_popup": "popup.html"
   },
 
@@ -26,10 +30,6 @@
   },
 
   "permissions": [
-    "storage"
-  ],
-
-  "host_permissions": [
-    "<all_urls>"
+    "contextMenus"
   ]
 }
