@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
 
-  "name": "Right-Click to Google Calendar™",
+  "name": "Google Calendar™ Quick Add",
   "description": "選択したテキストをGoogleカレンダーの予定に追加します。",
   "version": "1.0.0",
 
@@ -23,13 +23,6 @@
     },
     "default_popup": "popup.html"
   },
-
-  "content_scripts": [
-      {
-          "matches": ["<all_urls>"],
-          "js": ["js/vendor.js", "js/content_script.js"]
-      }
-  ],
 
   "background": {
     "service_worker": "js/background.js"
