@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
     id: CONTEXT_MENU_ID,
     title: "Googleカレンダーに追加",
-    contexts: ["selection", "page"],
+    contexts: ["selection"],
   });
 });
 
