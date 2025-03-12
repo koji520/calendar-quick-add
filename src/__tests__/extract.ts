@@ -1,10 +1,46 @@
-import { extractDateTime } from "../extract";
+import { extractDateTime, dateRegex } from "../extract";
+
+
+describe("regex", () => {
+    test("should null", () => {
+        expect("aaaaa".match(dateRegex)).toBeNull();
+    });
+
+    test("should match full date and time", () => {
+        const match = "2025/03/10 14:30".match(dateRegex)
+        if (match) {
+            expect(match[1]).toBe("2025");
+            expect(match[2]).toBe("03");
+        }
+    });
+    test("should handle short date format", () => {
+        const match = "7/4 18:00".match(dateRegex)
+        expect(match).not.toBeNull();
+        if (match) {
+            expect(match[1]).toBe(undefined);
+            expect(match[2]).toBe("7");
+            expect(match[3]).toBe("4");
+            expect(match[4]).toBe("18");
+            expect(match[5]).toBe("00");
+        }
+    });
+    // test("should handle only date format", () => {
+    //     const match = "18:00".match(dateRegex)
+    //     expect(match).not.toBeNull();
+    //     if (match) {
+    //         expect(match[1]).toBeUndefined();
+    //         expect(match[2]).toBeUndefined();
+    //         expect(match[3]).toBeUndefined();
+    //         expect(match[4]).toBe("18");
+    //         expect(match[5]).toBe("00");
+    //     }
+    // });
+});
+
 
 describe("extractDateTime function", () => {
     test("should extract null", () => {
-        expect(extractDateTime("aaaaaaaaa")).toEqual(
-            null
-        );
+        expect(extractDateTime("aaaaaaaaa")).toBeNull();
     });
 
     test("should extract full date and time", () => {
@@ -42,9 +78,9 @@ describe("extractDateTime function", () => {
     //     const currentYear = today.getFullYear();
     //     const currentMonth = today.getMonth() + 1;
     //     const currentDate = today.getDate();
-    //     expect(extractDateTime("9時15分")).toEqual({
+    //     expect(extractDateTime("9:15")).toEqual({
     //         startDateTime: `${currentYear}${currentMonth}${currentDate}T091500`,
-    //         endDateTime: `${currentYear}${currentMonth}${currentDate}0310T101500`
+    //         endDateTime: `${currentYear}${currentMonth}${currentDate}T101500`
     //     });
     // });
 });
