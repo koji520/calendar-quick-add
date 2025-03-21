@@ -1,6 +1,6 @@
 import { extractDateTime } from "./extract";
 
-const CONTEXT_MENU_ID = "add-to-google-calendar";
+const CONTEXT_MENU_ID = "google-calendar-quick-add";
 
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
@@ -13,18 +13,16 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 chrome.contextMenus.onClicked.addListener((info) => {
   if (info.menuItemId === CONTEXT_MENU_ID) {
+    const baseUrl = "https://calendar.google.com/calendar/r/eventedit"
+    const calendarUrl = new URL(baseUrl);
+
     const selectedText = info.selectionText?.trim();
     if (selectedText) {
-      const encodedText = encodeURIComponent(selectedText);
-      let datesParam = "";
       const dateTime = extractDateTime(selectedText);
 
-      if (dateTime) {
-        datesParam = `&dates=${dateTime.startDateTime}/${dateTime.endDateTime}`;
-      }
-
-      const calendarUrl = `https://calendar.google.com/calendar/r/eventedit?text=${encodedText}${datesParam}`;
-      chrome.tabs.create({ url: calendarUrl });
+      calendarUrl.searchParams.append("text", selectedText);
+      if (dateTime) calendarUrl.searchParams.append("dates", dateTime?.startDateTime + "/" + dateTime?.endDateTime);
     }
+    chrome.tabs.create({ url: calendarUrl.href });
   }
 });
