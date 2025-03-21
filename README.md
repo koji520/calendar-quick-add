@@ -1,4 +1,4 @@
-# Right-Click to Google Calendar
+# Google Calendar Quick Add
 
 ## Prerequisites
 
