@@ -1,5 +1,9 @@
 # Google Calendar Quick Add
 
+## webstore
+- [chrome webstore](https://chromewebstore.google.com/detail/google-calendar-quick-add/nfjgfiefpjgdaocehhmegfnokjniemjm)
+
+
 ## Prerequisites
 
 * [node + npm](https://nodejs.org/) (Current Version)
