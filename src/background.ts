@@ -12,17 +12,16 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 
 chrome.contextMenus.onClicked.addListener((info) => {
-  if (info.menuItemId === CONTEXT_MENU_ID) {
-    const baseUrl = "https://calendar.google.com/calendar/r/eventedit"
-    const calendarUrl = new URL(baseUrl);
+  if (info.menuItemId !== CONTEXT_MENU_ID) return;
 
-    const selectedText = info.selectionText?.trim();
-    if (selectedText) {
-      const extractResult = extractDateTime(selectedText);
+  const calendarUrl = new URL("https://calendar.google.com/calendar/r/eventedit");
 
-      calendarUrl.searchParams.append("text", extractResult.textWithoutDate);
-      if (extractResult.startDateTime) calendarUrl.searchParams.append("dates", extractResult.startDateTime + "/" + extractResult.endDateTime);
-    }
-    chrome.tabs.create({ url: calendarUrl.href });
+  const selectedText = info.selectionText?.trim();
+  if (selectedText) {
+    const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
+
+    calendarUrl.searchParams.append("text", textWithoutDate);
+    if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime + "/" + endDateTime);
   }
+  chrome.tabs.create({ url: calendarUrl.href });
 });
