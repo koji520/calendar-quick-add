@@ -18,10 +18,10 @@ chrome.contextMenus.onClicked.addListener((info) => {
 
     const selectedText = info.selectionText?.trim();
     if (selectedText) {
-      const dateTime = extractDateTime(selectedText);
+      const extractResult = extractDateTime(selectedText);
 
-      calendarUrl.searchParams.append("text", selectedText);
-      if (dateTime) calendarUrl.searchParams.append("dates", dateTime?.startDateTime + "/" + dateTime?.endDateTime);
+      calendarUrl.searchParams.append("text", extractResult.textWithoutDate);
+      if (extractResult.startDateTime) calendarUrl.searchParams.append("dates", extractResult.startDateTime + "/" + extractResult.endDateTime);
     }
     chrome.tabs.create({ url: calendarUrl.href });
   }
