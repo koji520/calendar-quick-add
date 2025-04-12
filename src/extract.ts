@@ -7,20 +7,17 @@ const dateRegex =
   /(\d{4})?[年\/\-]?(\d{1,2})[月\/\-]?(\d{1,2})日?(?:\s*(\d{1,2})[:時](\d{1,2})?)?[分]?/;
 
 function extractDateTime(text: string) {
-  const now = dayjs();
-  const currentYear = now.year();
-  const currentMonth = now.month() + 1;
-  const currentDate = now.date();
-
   const match = text.match(dateRegex);
 
   if (!match) {
     return { textWithoutDate: text, startDateTime: null, endDateTime: null };
   }
 
-  const year = match[1] ? parseInt(match[1]) : currentYear;
-  const month = match[2] ? parseInt(match[2]) : currentMonth;
-  const day = match[3] ? parseInt(match[3]) : currentDate;
+  const now = dayjs();
+
+  const year = match[1] ? parseInt(match[1]) : now.year();
+  const month = match[2] ? parseInt(match[2]) : now.month() + 1;
+  const day = match[3] ? parseInt(match[3]) : now.date();
   const hour = match[4] ? parseInt(match[4]) : 0;
   const minute = match[5] ? parseInt(match[5]) : 0;
 
