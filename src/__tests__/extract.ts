@@ -40,11 +40,18 @@ describe("regex", () => {
 
 describe("extractDateTime function", () => {
     test("should extract null", () => {
-        expect(extractDateTime("aaaaaaaaa")).toBeNull();
+        expect(extractDateTime("aaaaaaaaa")).toEqual(
+            {
+                textWithoutDate: "aaaaaaaaa",
+                startDateTime: null,
+                endDateTime: null
+            }
+        );
     });
 
     test("should extract full date and time", () => {
         expect(extractDateTime("ミーティング 2025/03/10 14:30")).toEqual({
+            textWithoutDate: "ミーティング ",
             startDateTime: "20250310T143000",
             endDateTime: "20250310T153000"
         });
@@ -53,6 +60,7 @@ describe("extractDateTime function", () => {
     test("should handle date without year", () => {
         const currentYear = new Date().getFullYear();
         expect(extractDateTime("3月10日 9時15分")).toEqual({
+            textWithoutDate: "",
             startDateTime: `${currentYear}0310T091500`,
             endDateTime: `${currentYear}0310T101500`
         });
@@ -60,6 +68,7 @@ describe("extractDateTime function", () => {
 
     test("should handle date without time", () => {
         expect(extractDateTime("2024年5月20日")).toEqual({
+            textWithoutDate: "",
             startDateTime: "20240520T000000",
             endDateTime: "20240520T010000"
         });
@@ -68,6 +77,7 @@ describe("extractDateTime function", () => {
     test("should handle short date format", () => {
         const currentYear = new Date().getFullYear();
         expect(extractDateTime("7/4 18:00")).toEqual({
+            textWithoutDate: "",
             startDateTime: `${currentYear}0704T180000`,
             endDateTime: `${currentYear}0704T190000`
         });

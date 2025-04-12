@@ -4,7 +4,7 @@ import objectSupport from "dayjs/plugin/objectSupport";
 dayjs.extend(objectSupport);
 const dateFormat = "YYYYMMDDTHHmmss";
 const dateRegex =
-  /(\d{4})?[年\/\-]?(\d{1,2})[月\/\-]?(\d{1,2})日?(?:\s*(\d{1,2})[:時](\d{1,2})?)?/;
+  /(\d{4})?[年\/\-]?(\d{1,2})[月\/\-]?(\d{1,2})日?(?:\s*(\d{1,2})[:時](\d{1,2})?)?[分]?/;
 
 function extractDateTime(text: string) {
   const now = dayjs();
@@ -14,7 +14,10 @@ function extractDateTime(text: string) {
 
   const match = text.match(dateRegex);
 
-  if (!match) return null;
+  if (!match) {
+    return { textWithoutDate: text, startDateTime: null, endDateTime: null };
+  }
+
   const year = match[1] ? parseInt(match[1]) : currentYear;
   const month = match[2] ? parseInt(match[2]) : currentMonth;
   const day = match[3] ? parseInt(match[3]) : currentDate;
@@ -32,6 +35,7 @@ function extractDateTime(text: string) {
   const end = start.add(1, "hour");
 
   return {
+    textWithoutDate: text.replace(dateRegex, ""),
     startDateTime: start.format(dateFormat),
     endDateTime: end.format(dateFormat),
   };
