@@ -27,17 +27,6 @@ describe("regex", () => {
             expect(match[5]).toBe("00");
         }
     });
-    // test("should handle only date format", () => {
-    //     const match = "18:00".match(dateRegex)
-    //     expect(match).not.toBeNull();
-    //     if (match) {
-    //         expect(match[1]).toBeUndefined();
-    //         expect(match[2]).toBeUndefined();
-    //         expect(match[3]).toBeUndefined();
-    //         expect(match[4]).toBe("18");
-    //         expect(match[5]).toBe("00");
-    //     }
-    // });
 });
 
 
@@ -85,15 +74,4 @@ describe("extractDateTime function", () => {
             endDateTime: dayjs({year: currentYear, month: 7 - 1, day: 4, hour: 19, minute: 0})
         });
     });
-
-    // test("should handle date without year", () => {
-    //     const today = new Date()
-    //     const currentYear = today.getFullYear();
-    //     const currentMonth = today.getMonth() + 1;
-    //     const currentDate = today.getDate();
-    //     expect(extractDateTime("9:15")).toEqual({
-    //         startDateTime: `${currentYear}${currentMonth}${currentDate}T091500`,
-    //         endDateTime: `${currentYear}${currentMonth}${currentDate}T101500`
-    //     });
-    // });
 });
