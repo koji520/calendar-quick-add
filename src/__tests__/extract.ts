@@ -1,5 +1,8 @@
 import { extractDateTime, dateRegex } from "../extract";
+import dayjs from "dayjs";
+import objectSupport from "dayjs/plugin/objectSupport";
 
+dayjs.extend(objectSupport);
 
 describe("regex", () => {
     test("should null", () => {
@@ -52,8 +55,8 @@ describe("extractDateTime function", () => {
     test("should extract full date and time", () => {
         expect(extractDateTime("ミーティング 2025/03/10 14:30")).toEqual({
             textWithoutDate: "ミーティング ",
-            startDateTime: "20250310T143000",
-            endDateTime: "20250310T153000"
+            startDateTime: dayjs({year: 2025, month: 3 - 1, day: 10, hour: 14, minute: 30}),
+            endDateTime: dayjs({year: 2025, month: 3 - 1, day: 10, hour: 15, minute: 30})
         });
     });
 
@@ -61,16 +64,16 @@ describe("extractDateTime function", () => {
         const currentYear = new Date().getFullYear();
         expect(extractDateTime("3月10日 9時15分")).toEqual({
             textWithoutDate: "",
-            startDateTime: `${currentYear}0310T091500`,
-            endDateTime: `${currentYear}0310T101500`
+            startDateTime: dayjs({year: currentYear, month: 3 - 1, day: 10, hour: 9, minute: 15}),
+            endDateTime: dayjs({year: currentYear, month: 3 - 1, day: 10, hour: 10, minute: 15})
         });
     });
 
     test("should handle date without time", () => {
         expect(extractDateTime("2024年5月20日")).toEqual({
             textWithoutDate: "",
-            startDateTime: "20240520T000000",
-            endDateTime: "20240520T010000"
+            startDateTime: dayjs({year: 2024, month: 5 - 1, day: 20, hour: 0, minute: 0}),
+            endDateTime: dayjs({year: 2024, month: 5 - 1, day: 20, hour: 1, minute: 0})
         });
     });
 
@@ -78,8 +81,8 @@ describe("extractDateTime function", () => {
         const currentYear = new Date().getFullYear();
         expect(extractDateTime("7/4 18:00")).toEqual({
             textWithoutDate: "",
-            startDateTime: `${currentYear}0704T180000`,
-            endDateTime: `${currentYear}0704T190000`
+            startDateTime: dayjs({year: currentYear, month: 7 - 1, day: 4, hour: 18, minute: 0}),
+            endDateTime: dayjs({year: currentYear, month: 7 - 1, day: 4, hour: 19, minute: 0})
         });
     });
 

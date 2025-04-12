@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport";
 
 dayjs.extend(objectSupport);
-const dateFormat = "YYYYMMDDTHHmmss";
 const dateRegex =
   /(\d{4})?[年\/\-]?(\d{1,2})[月\/\-]?(\d{1,2})日?(?:\s*(\d{1,2})[:時](\d{1,2})?)?[分]?/;
 
@@ -33,8 +32,8 @@ function extractDateTime(text: string) {
 
   return {
     textWithoutDate: text.replace(dateRegex, ""),
-    startDateTime: start.format(dateFormat),
-    endDateTime: end.format(dateFormat),
+    startDateTime: start,
+    endDateTime: end,
   };
 }
 

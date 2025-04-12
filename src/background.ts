@@ -1,6 +1,7 @@
 import { extractDateTime } from "./extract";
 
 const CONTEXT_MENU_ID = "google-calendar-quick-add";
+const DATE_FORMAT = "YYYYMMDDTHHmmss";
 
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
@@ -21,7 +22,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
     const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
 
     calendarUrl.searchParams.append("text", textWithoutDate);
-    if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime + "/" + endDateTime);
+    if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
   }
   chrome.tabs.create({ url: calendarUrl.href });
 });
