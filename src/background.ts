@@ -19,10 +19,18 @@ chrome.contextMenus.onClicked.addListener((info) => {
 
   const selectedText = info.selectionText?.trim();
   if (selectedText) {
-    const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+      const currentTitle = tabs[0].title || "";
+      const currentUrl = tabs[0].url || "";
+      const currentTab = `${currentTitle}\n${currentUrl}`;
 
-    calendarUrl.searchParams.append("text", textWithoutDate);
-    if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
+      const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
+
+      calendarUrl.searchParams.append("text", textWithoutDate);
+      if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
+      calendarUrl.searchParams.append("details", currentTab);
+
+      chrome.tabs.create({ url: calendarUrl.href });
+    });
   }
-  chrome.tabs.create({ url: calendarUrl.href });
 });
