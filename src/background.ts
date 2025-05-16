@@ -11,26 +11,33 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 });
 
+const GetCurrentTabInfo = async (): Promise<chrome.tabs.Tab[]> => {
+  return await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+}
 
-chrome.contextMenus.onClicked.addListener((info) => {
+const GetCurrentTabMessage = async (): Promise<string> => {
+  const tabs = await GetCurrentTabInfo();
+  const currentTitle = tabs[0].title || "";
+  const currentUrl = tabs[0].url || "";
+  const currentTab = `${currentTitle}\n${currentUrl}`;
+  return currentTab;
+}
+
+chrome.contextMenus.onClicked.addListener(async (info) => {
   if (info.menuItemId !== CONTEXT_MENU_ID) return;
 
   const calendarUrl = new URL("https://calendar.google.com/calendar/r/eventedit");
 
   const selectedText = info.selectionText?.trim();
   if (selectedText) {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-      const currentTitle = tabs[0].title || "";
-      const currentUrl = tabs[0].url || "";
-      const currentTab = `${currentTitle}\n${currentUrl}`;
 
       const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
 
       calendarUrl.searchParams.append("text", textWithoutDate);
       if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
+      const currentTab = await GetCurrentTabMessage();
       calendarUrl.searchParams.append("details", currentTab);
 
       chrome.tabs.create({ url: calendarUrl.href });
-    });
   }
 });
