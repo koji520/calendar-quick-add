@@ -8,6 +8,5 @@
             ],
             "url": "http://json.schemastore.org/chrome-manifest"
         }
-    ],
-    "editor.formatOnSave": false,
+    ]
 }

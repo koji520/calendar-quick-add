@@ -11,12 +11,12 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 });
 
-const GetCurrentTabInfo = async (): Promise<chrome.tabs.Tab[]> => {
+const getCurrentTabInfo = async (): Promise<chrome.tabs.Tab[]> => {
   return await chrome.tabs.query({ active: true, lastFocusedWindow: true });
 }
 
-const GetCurrentTabMessage = async (): Promise<string> => {
-  const tabs = await GetCurrentTabInfo();
+const getCurrentTabMessage = async (): Promise<string> => {
+  const tabs = await getCurrentTabInfo();
   const currentTitle = tabs[0].title || "";
   const currentUrl = tabs[0].url || "";
   const currentTab = `${currentTitle}\n${currentUrl}`;
@@ -35,7 +35,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
       calendarUrl.searchParams.append("text", textWithoutDate);
       if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
-      const currentTab = await GetCurrentTabMessage();
+      const currentTab = await getCurrentTabMessage();
       calendarUrl.searchParams.append("details", currentTab);
 
       chrome.tabs.create({ url: calendarUrl.href });
