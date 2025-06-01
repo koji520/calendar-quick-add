@@ -3,7 +3,7 @@
 
   "name": "Google Calendar Quick Add",
   "description": "選択したテキストをGoogleカレンダーの予定に追加します。",
-  "version": "1.0.3",
+  "version": "1.0.4",
 
   "icons": {
     "16": "icons/icon16.png",
