@@ -1,7 +1,7 @@
 import { extractDateTime } from "./extract";
+import { createGoogleCalendarUrl } from "./google_calendar";
 
 const CONTEXT_MENU_ID = "google-calendar-quick-add";
-const DATE_FORMAT = "YYYYMMDDTHHmmss";
 
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
@@ -25,19 +25,13 @@ const getCurrentTabMessage = async (): Promise<string> => {
 
 chrome.contextMenus.onClicked.addListener(async (info) => {
   if (info.menuItemId !== CONTEXT_MENU_ID) return;
+  if (!info.selectionText) return;
 
-  const calendarUrl = new URL("https://calendar.google.com/calendar/r/eventedit");
+  const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(info.selectionText);
 
-  const selectedText = info.selectionText?.trim();
-  if (selectedText) {
+  const currentTab = await getCurrentTabMessage();
 
-      const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(selectedText);
+  const calendarUrl = createGoogleCalendarUrl(textWithoutDate, currentTab, startDateTime, endDateTime);
 
-      calendarUrl.searchParams.append("text", textWithoutDate);
-      if (startDateTime) calendarUrl.searchParams.append("dates", startDateTime.format(DATE_FORMAT) + "/" + endDateTime.format(DATE_FORMAT));
-      const currentTab = await getCurrentTabMessage();
-      calendarUrl.searchParams.append("details", currentTab);
-
-      chrome.tabs.create({ url: calendarUrl.href });
-  }
+  chrome.tabs.create({ url: calendarUrl.href });
 });
