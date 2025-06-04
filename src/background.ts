@@ -6,7 +6,7 @@ const CONTEXT_MENU_ID = "google-calendar-quick-add";
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
     id: CONTEXT_MENU_ID,
-    title: "Googleカレンダーに追加",
+    title: chrome.i18n.getMessage("contextMenusTitle"),
     contexts: ["selection"],
   });
 });

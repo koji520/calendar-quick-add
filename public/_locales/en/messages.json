@@ -1,0 +1,26 @@
+{
+  "extensionDescription": {
+    "message": "Adds selected text to Google Calendar events."
+  },
+  "contextMenusTitle": {
+    "message": "Add to Google Calendar"
+  },
+  "popupHeading": {
+    "message": "Add event"
+  },
+  "popupEventTextPlaceholder": {
+    "message": "Example: Meeting at 3 PM on 15th March"
+  },
+  "popupAddButton": {
+    "message": "Add"
+  },
+  "popupStatusEmptyText":{
+    "message": "Please enter text."
+  },
+  "popupStatusCommonError":{
+    "message": "An error occurred."
+  },
+  "popupStatusProgress":{
+    "message": "Opening Google Calendar..."
+  }
+}

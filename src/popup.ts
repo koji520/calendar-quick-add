@@ -3,19 +3,25 @@ import { createGoogleCalendarUrl } from "./google_calendar";
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Popup script loaded');
-  
+
+  const heading = document.getElementById('heading') as HTMLHeadingElement;
   const eventText = document.getElementById('eventText') as HTMLTextAreaElement;
   const addButton = document.getElementById('addButton') as HTMLButtonElement;
   const status = document.getElementById('status') as HTMLDivElement;
 
-  console.log('Elements found:', { eventText, addButton, status });
+  console.log('Elements found:', {heading, eventText, addButton, status });
+
+  // i18n support
+  heading.textContent = chrome.i18n.getMessage('popupHeading');
+  eventText.placeholder = chrome.i18n.getMessage('popupEventTextPlaceholder');
+  addButton.textContent = chrome.i18n.getMessage('popupAddButton');
 
   addButton.addEventListener('click', async () => {
     console.log('Add button clicked');
     const text = eventText.value.trim();
     
     if (!text) {
-      showStatus('テキストを入力してください', 'error');
+      showStatus(chrome.i18n.getMessage("popupStatusEmptyText"), 'error');
       return;
     }
 
@@ -30,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Clear the input and show success message
       eventText.value = '';
-      showStatus('カレンダーを開いています...', 'success');
+      showStatus(chrome.i18n.getMessage("popupStatusProgress"), 'success');
       
       // Close popup after a short delay
       setTimeout(() => {
         window.close();
       }, 1000);
     } catch (error) {
-      showStatus('エラーが発生しました', 'error');
+      showStatus(chrome.i18n.getMessage("popupStatusCommonError"), 'error');
       console.error(error);
     }
   });
