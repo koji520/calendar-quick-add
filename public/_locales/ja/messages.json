@@ -1,0 +1,26 @@
+{
+  "extensionDescription": {
+    "message": "選択したテキストをGoogleカレンダーの予定に追加します。"
+  },
+  "contextMenusTitle": {
+    "message": "Googleカレンダーに追加"
+  },
+  "popupHeading": {
+    "message": "予定を追加"
+  },
+  "popupEventTextPlaceholder": {
+    "message": "例: 2024/12/15 14:30 ミーティング"
+  },
+  "popupAddButton": {
+    "message": "追加"
+  },
+  "popupStatusEmptyText":{
+    "message": "テキストを入力してください。"
+  },
+  "popupStatusCommonError":{
+    "message": "エラーが発生しました。"
+  },
+  "popupStatusProgress":{
+    "message": "カレンダーを開いています..."
+  }
+}
