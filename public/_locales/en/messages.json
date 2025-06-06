@@ -1,6 +1,6 @@
 {
   "extensionDescription": {
-    "message": "Adds selected text to Google Calendar events."
+    "message": "Create event on Google Calendar from selected text."
   },
   "contextMenusTitle": {
     "message": "Add to Google Calendar"
@@ -9,7 +9,7 @@
     "message": "Add event"
   },
   "popupEventTextPlaceholder": {
-    "message": "Example: Meeting at 3 PM on 15th March"
+    "message": "example: Meeting at 3 PM on 15th March"
   },
   "popupAddButton": {
     "message": "Add"
