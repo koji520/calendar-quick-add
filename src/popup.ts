@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(text);
+      const userLang = chrome.i18n.getUILanguage();
+
+      const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(text, userLang);
       
       // For popup, don't include URL and title in description
       const calendarUrl = createGoogleCalendarUrl(textWithoutDate, "", startDateTime, endDateTime);

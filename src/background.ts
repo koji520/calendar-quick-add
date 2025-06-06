@@ -27,7 +27,9 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
   if (info.menuItemId !== CONTEXT_MENU_ID) return;
   if (!info.selectionText) return;
 
-  const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(info.selectionText);
+  const userLang = chrome.i18n.getUILanguage();  // "ja", "en-US" など
+
+  const { textWithoutDate, startDateTime, endDateTime } = extractDateTime(info.selectionText, userLang);
 
   const currentTab = await getCurrentTabMessage();
 
