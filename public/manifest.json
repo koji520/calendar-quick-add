@@ -3,7 +3,7 @@
 
   "name": "Google Calendar Quick Add",
   "description": "__MSG_extensionDescription__",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "default_locale" : "en",
 
   "icons": {
