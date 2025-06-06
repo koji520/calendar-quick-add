@@ -28,8 +28,8 @@ const Locales:Locale[] = [
   "ja",
 ];
 
-const getChronoParser = (language: Locale) => {
-  switch (language) {
+const getChronoParser = (locale: Locale) => {
+  switch (locale) {
     case 'de':
       return chrono.de;
     case 'fr':
@@ -54,7 +54,7 @@ const getChronoParser = (language: Locale) => {
   }
 };
 
-function chromeLang2ChronoLang(userLang: PossibleChromeUILanguages): Locale {
+function chromeLang2ChronoLocale(userLang: PossibleChromeUILanguages): Locale {
   switch (userLang) {
     case 'ja':
       return 'ja';
@@ -97,12 +97,12 @@ function moveItemToStart(arr: Locale[], item: Locale): Locale[] {
  * @returns {Object} An object containing the text without date, start date time, and end date time.
  */
 function extractDateTime(text: string, userLang: PossibleChromeUILanguages) {  
-  const convertedUserLang = chromeLang2ChronoLang(userLang);
-  const orderdLangs = moveItemToStart(Locales, convertedUserLang);
+  const convertedUserLang = chromeLang2ChronoLocale(userLang);
+  const orderdLocales = moveItemToStart(Locales, convertedUserLang);
 
   let parsedResult: chrono.ParsedResult[] = [];
-  for (const lang of orderdLangs) {
-    parsedResult = getChronoParser(lang).parse(text);
+  for (const locale of orderdLocales) {
+    parsedResult = getChronoParser(locale).parse(text);
     if (parsedResult.length > 0) break;
   }
 
