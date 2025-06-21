@@ -1,8 +1,8 @@
 # Google Calendar Quick Add
 
-## webstore
-- [chrome webstore](https://chromewebstore.google.com/detail/google-calendar-quick-add/nfjgfiefpjgdaocehhmegfnokjniemjm)
-
+## distribution
+- [Chrome Webstore](https://chromewebstore.google.com/detail/google-calendar-quick-add/nfjgfiefpjgdaocehhmegfnokjniemjm)
+- [Edge Addon](https://microsoftedge.microsoft.com/addons/detail/google-calendar-quick-add/fhegnglmehohbehnflmfocccfibpebfp)
 
 ## Prerequisites
 
