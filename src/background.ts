@@ -3,10 +3,10 @@ import { createGoogleCalendarUrl } from "./google_calendar";
 
 const CONTEXT_MENU_ID = "google-calendar-quick-add";
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: CONTEXT_MENU_ID,
-    title: chrome.i18n.getMessage("contextMenusTitle"),
+    title: chrome.i18n.getMessage("contextMenusTitle") + ": “%s”",
     contexts: ["selection"],
   });
 });
