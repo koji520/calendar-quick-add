@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Google Agenda Snel Toevoegen"
+  },
+  "extensionDescription": {
+    "message": "Gebeurtenis aanmaken in Google Agenda vanuit geselecteerde tekst."
+  },
+  "contextMenusTitle": {
+    "message": "Toevoegen aan Google Agenda"
+  },
+  "popupHeading": {
+    "message": "Gebeurtenis toevoegen"
+  },
+  "popupEventTextPlaceholder": {
+    "message": "bijvoorbeeld: Vergadering om 15:00 op 15 maart"
+  },
+  "popupAddButton": {
+    "message": "Toevoegen"
+  },
+  "popupStatusEmptyText":{
+    "message": "Voer tekst in."
+  },
+  "popupStatusCommonError":{
+    "message": "Er is een fout opgetreden."
+  },
+  "popupStatusProgress":{
+    "message": "Google Agenda wordt geopend..."
+  }
+}

@@ -1,4 +1,7 @@
 {
+  "extensionName": {
+    "message": "Google Calendar Quick Add"
+  },
   "extensionDescription": {
     "message": "選択したテキストをGoogleカレンダーの予定に追加します。"
   },

@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Google 日历快速添加"
+  },
+  "extensionDescription": {
+    "message": "从选中的文本在Google日历上创建事件。"
+  },
+  "contextMenusTitle": {
+    "message": "添加到Google日历"
+  },
+  "popupHeading": {
+    "message": "添加事件"
+  },
+  "popupEventTextPlaceholder": {
+    "message": "例如：3月15日下午3点开会"
+  },
+  "popupAddButton": {
+    "message": "添加"
+  },
+  "popupStatusEmptyText":{
+    "message": "请输入文本。"
+  },
+  "popupStatusCommonError":{
+    "message": "发生错误。"
+  },
+  "popupStatusProgress":{
+    "message": "正在打开Google日历..."
+  }
+}
