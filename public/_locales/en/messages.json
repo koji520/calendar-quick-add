@@ -1,4 +1,7 @@
 {
+  "extensionName": {
+    "message": "Google Calendar Quick Add"
+  },
   "extensionDescription": {
     "message": "Create event on Google Calendar from selected text."
   },

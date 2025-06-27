@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Google Календарь Быстрое Добавление"
+  },
+  "extensionDescription": {
+    "message": "Создать событие в Google Календаре из выделенного текста."
+  },
+  "contextMenusTitle": {
+    "message": "Добавить в Google Календарь"
+  },
+  "popupHeading": {
+    "message": "Добавить событие"
+  },
+  "popupEventTextPlaceholder": {
+    "message": "пример: Встреча в 15:00 15 марта"
+  },
+  "popupAddButton": {
+    "message": "Добавить"
+  },
+  "popupStatusEmptyText":{
+    "message": "Пожалуйста, введите текст."
+  },
+  "popupStatusCommonError":{
+    "message": "Произошла ошибка."
+  },
+  "popupStatusProgress":{
+    "message": "Открывается Google Календарь..."
+  }
+}
