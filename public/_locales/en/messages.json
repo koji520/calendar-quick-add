@@ -12,7 +12,7 @@
     "message": "Add event"
   },
   "popupEventTextPlaceholder": {
-    "message": "example: Meeting at 3 PM on 15th March"
+    "message": "example: Meeting at 3 PM on March 15th"
   },
   "popupAddButton": {
     "message": "Add"
